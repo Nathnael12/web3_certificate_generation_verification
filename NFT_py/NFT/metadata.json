@@ -1,7 +1,7 @@
 {
     "name": "Trainee Certificate",
     "description": "Certificate",
-    "image_integrity" : "sha256-CrXiawCRUcaumbBLKbJ36J+DRjXM1JO2qAGyUO79DF4=",
+    "image_integrity" : "",
     "properties": {
         "simple_property": "Trainee unique Certificate",
         "rich_property": {
