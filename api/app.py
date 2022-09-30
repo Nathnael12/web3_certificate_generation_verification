@@ -4,9 +4,12 @@ from pydantic import BaseModel
 from fastapi import FastAPI, File, UploadFile
 import os 
 import requests
+import sys
 
 from fastapi.middleware.cors import CORSMiddleware
 from config import *
+sys.path.append(f'./scripts')
+from send_email import send
 
 app = FastAPI()
 
@@ -22,15 +25,9 @@ app.add_middleware(
 def check():
   return "Your API is up!"
 
-class Item(BaseModel):
-    name: str
-    description: str
-
-@app.post("/items")
-def predict_news(item:Item):
-
-    return item
-
+class receiver(BaseModel):
+    address: str
+    asset_id: str
 
 @app.post("/mint")
 def  create_upload_file():
@@ -57,3 +54,7 @@ def  create_upload_file():
     hash = response.json()['IpfsHash']
     return hash
 # Now you can see your image on the IPFS : https://ipfs.stibits.com/<your_hash>
+
+@app.post("/mail")
+def  mail(rec:receiver):
+    send(rec.asset_id,rec.address)
