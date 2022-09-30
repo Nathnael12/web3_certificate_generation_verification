@@ -1,4 +1,7 @@
-/*global AlgoSigner*/
+/*global reach*/
+
+import { loadStdlib } from '@reach-sh/stdlib'
+import MyAlgoConnect from '@reach-sh/stdlib/ALGO_MyAlgoConnect';
 
 import Login from './components/Login'
 import Trainee from './pages/Trainee'
@@ -9,6 +12,12 @@ import React from 'react'
 
 import './assets/css/app.css'
 import Home from './pages/Home'
+import Trainer from './pages/Trainer';
+require('dotenv').config()
+const reach = loadStdlib("ALGO")
+reach.setWalletFallback(reach.walletFallback({
+    providerEnv: 'TestNet', MyAlgoConnect
+}));
 
 function App(){ 
         return(
@@ -20,6 +29,9 @@ function App(){
 
                     <Route exact path='/trainee' element={<ProtectedRoute />}>
                         <Route exact path='/trainee' element={<Trainee />} />
+                    </Route>
+                    <Route exact path='/trainer' element={<ProtectedRoute />}>
+                        <Route exact path='/trainer' element={<Trainer />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
