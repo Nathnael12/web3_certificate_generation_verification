@@ -28,6 +28,7 @@ def check():
 class receiver(BaseModel):
     address: str
     asset_id: str
+    
 
 @app.post("/mint")
 def  create_upload_file():
@@ -58,3 +59,6 @@ def  create_upload_file():
 @app.post("/mail")
 def  mail(rec:receiver):
     send(rec.asset_id,rec.address)
+
+
+    
