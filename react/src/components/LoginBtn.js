@@ -1,15 +1,17 @@
-import React, {  useRef } from 'react'
-import { loadStdlib } from '@reach-sh/stdlib'
-import { Link } from 'react-router-dom';
+/*global reach*/
 
-import MyAlgoConnect from '@reach-sh/stdlib/ALGO_MyAlgoConnect';
+import React, {  useRef } from 'react'
+import { Link } from 'react-router-dom';
 import '../assets/css/home.css'
 
-const reach = loadStdlib("ALGO")
+// import { loadStdlib } from '@reach-sh/stdlib'
+// import MyAlgoConnect from '@reach-sh/stdlib/ALGO_MyAlgoConnect';
 
-reach.setWalletFallback(reach.walletFallback({
-    providerEnv: 'TestNet', MyAlgoConnect
-}));
+// const reach = loadStdlib("ALGO")
+// reach.setWalletFallback(reach.walletFallback({
+//         providerEnv: 'TestNet', MyAlgoConnect
+// }));
+    
 
 const LoginBtn = (props) => {
     let to=props.to;
@@ -39,6 +41,8 @@ const LoginBtn = (props) => {
         try {
             account.current = await reach.getDefaultAccount()
             // setAccountAddress(account.current.networkAccount.addr)
+            // console.log("Account :" + account.current.networkAccount.keys)
+            console.log(JSON.stringify(account))
             console.log("Account :" + account.current.networkAccount.addr)
             localStorage.setItem('token', account.current.networkAccount.addr);
             window.location = '/'+to

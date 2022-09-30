@@ -33,6 +33,7 @@ const MyAlgoWallet = () => {
     const getAccount = async () => {
         try{
            account.current = await reach.getDefaultAccount()
+           account.st = await reach.connectAccount()
             setAccountAddress(account.current.networkAccount.addr)
             console.log("Account :" + account.current.networkAccount.addr)
             localStorage.setItem('token', account.current.networkAccount.addr);
