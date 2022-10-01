@@ -1,0 +1,35 @@
+.userList{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+}
+.user{
+    display: flex;
+    flex-direction: row;
+    gap:25px;
+    justify-content: space-around;
+
+}
+
+.name,.phone,.email{
+    width: 30%;
+    color: black;
+    text-decoration: none;
+}
+.text-bold{
+    font-weight: bold;
+}
+.loading{
+  padding-top: 85px;
+}
+.box{
+    border: double 5px teal;
+    width: 80%;
+    margin-inline:auto;
+    border-radius:10px;
+}
+.logout{
+    position: absolute;
+    top:10px;
+    right: 10px;
+}

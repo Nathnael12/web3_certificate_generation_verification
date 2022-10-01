@@ -15,6 +15,7 @@ import '../assets/css/home.css'
 
 const LoginBtn = (props) => {
     let to=props.to;
+    let className = props.className;
 
     const account = useRef()
     const balance = useRef()
@@ -67,7 +68,7 @@ const LoginBtn = (props) => {
 
     return (
         <p>
-            <Link onClick={connectWallet} className="login" >Log in</Link>
+            <Link onClick={connectWallet} className={className} >Log in</Link>
 
         </p>
     )
