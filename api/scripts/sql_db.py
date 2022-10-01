@@ -143,9 +143,9 @@ def db_get_values(dbName: str="trainee"):
         conn.rollback()
         print("Error: ", e)
     
-def db_get_values_by_email(dbName: str,email:str):
+def db_get_values_by_asset(asset:str,dbName: str="trainee"):
     conn, cur = DBConnect(dbName)
-    sqlQuery = f'SELECT * FROM trainee WHERE email = {email};'
+    sqlQuery = f'SELECT remark,email FROM trainee WHERE asset = {asset};'
     try:
         cur.execute(sqlQuery)
         result = cur.fetchall()
