@@ -1,4 +1,5 @@
 import sys
+# from api.scripts.sql_db import createDB, createTable, db_get_values_by_asset, insert_to_table, update_table
 sys.path.append(f'./scripts')
 from send_email import send
 from sql_db import *
@@ -111,3 +112,7 @@ def update(data: Update):
 @app.get("/getall")
 def get_all():
     return db_get_values()
+
+@app.get("/getTrainee")
+def get_trainee(asset):
+    return db_get_values_by_asset(asset)
