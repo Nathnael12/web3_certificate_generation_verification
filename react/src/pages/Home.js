@@ -81,7 +81,7 @@ const Home = () => {
                         <div className="row py-2">
                             <div className="col-sm-6">
                                 <i className="flaticon-trends  display-2 text-primary"></i>
-                                <h4 className="font-weight-bold">Certified GYM Center</h4>
+                                <h4 className="font-weight-bold">Certified Trainers</h4>
                                 <p className='text-left'>Ipsum sanctu dolor ipsum dolore sit et kasd duo</p>
                             </div>
                             <div className="col-sm-6">

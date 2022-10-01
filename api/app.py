@@ -56,6 +56,11 @@ class Update(BaseModel):
     asset: str
     status: str
     email: str
+class OptinUpdate(BaseModel):
+
+    status: str
+    remark: str
+    asset: str
 
 
 @app.post("/mint")
@@ -108,6 +113,12 @@ def update(data: Update):
     json_stream=(data.json())
 
     update_table("trainee", json_stream, "trainee")
+
+@app.post("/optinUpdate")
+def update(data: OptinUpdate):
+    json_stream=(data.json())
+
+    optin_update("trainee", json_stream, "trainee")
 
 @app.get("/getall")
 def get_all():

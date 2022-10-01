@@ -6,6 +6,8 @@ import '../assets/third_party/css/theme.css'
 import '../assets/third_party/css/users.css'
 import { Link } from 'react-router-dom';
 const algosdk = require('algosdk');
+const axios = require('axios')
+
 
 const Trainee = () => {
 
@@ -16,6 +18,15 @@ const Trainee = () => {
     e.preventDefault()
     let assetId = Number(document.getElementById('assetId').value)
     await optin(assetId)
+
+    let update={
+      status:"Requested",
+      remark:localStorage.getItem('token'),
+      asset:assetId
+    }
+
+    await axios.post("http://127.0.0.1:8000/optinUpdate",update)
+
   }
 
   const logout = (e) => {

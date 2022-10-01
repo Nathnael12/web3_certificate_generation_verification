@@ -55,7 +55,7 @@ const mint = async (e,id="") => {
 const asset_transfer = async (e,assetID)=>{
     e.preventDefault()
 
-    let response = await axios.get(`127.0.0.1:8000/getTrainee?asset=${assetID}`) 
+    let response = await axios.get(`http://127.0.0.1:8000/getTrainee?asset=${assetID}`) 
     let receiver = response.data[0][0]
     let email = response.data[0][1]
 
@@ -76,7 +76,7 @@ const asset_transfer = async (e,assetID)=>{
 const decline = async (e,assetID)=>{
 
     e.preventDefault()
-    let response = await axios.get(`127.0.0.1:8000/getTrainee?asset=${assetID}`) 
+    let response = await axios.get(`http://127.0.0.1:8000/getTrainee?asset=${assetID}`) 
     let email = response.data[0][1]
 
     let updateData = {
@@ -128,7 +128,7 @@ const Trainer = () => {
                                 </div> :
                                 e[4] == "Requested" ?
                                     <div className="status">
-                                        <p onClick={(ev)=>transfer(ev,e[3])} className="btn btn-sm btn-success">Approve</p>
+                                        <p onClick={(ev)=>asset_transfer(ev,e[3])} className="btn btn-sm btn-success">Approve</p>
                                         <p onClick={(ev)=>decline(ev,e[3])} className="btn btn-sm btn-danger">Decline</p>
                                     </div> : <div></div>
                     }

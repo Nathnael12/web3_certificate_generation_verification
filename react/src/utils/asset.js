@@ -99,21 +99,25 @@ export const optin = async (assetID) => {
 
 export const transfer = async (assetID,receiver) => {
 
-    console.log(assetID);
     const params = await algodClient.getTransactionParams().do();
-    
-    const txn = algosdk.makeAssetTransferTxnWithSuggestedParams({
+
+    let recipient = receiver;
+    let closeRemainderTo = undefined;
+    let revocationTarget = undefined;
+    let amount = 1;
+    let note = undefined;
+
+    let txn = algosdk.makeAssetTransferTxnWithSuggestedParams(
         sender, 
-        receiver, 
-        undefined, 
-        undefined,
-        ammount:1, 
-        undefined, 
+        recipient, 
+        closeRemainderTo, 
+        revocationTarget,
+        amount,  
+        note, 
         assetID, 
-        suggestedParams: {
-            ...params,
-        }
-    });
+        params);
+
+
     const signedTxn = await myAlgoConnect.signTransaction(txn.toByte());
     console.log("txn", signedTxn);
 

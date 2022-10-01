@@ -131,6 +131,32 @@ def update_table(dbName: str, json_stream: json, table_name: str) -> None:
     print("All Data Updated Successfully")
     return
 
+def optin_update(dbName: str, json_stream: json, table_name: str) -> None:
+   
+    conn, cur = DBConnect(dbName)
+    update_data=json.dumps([json.loads(json_stream)])
+    df=pd.read_json(update_data)
+    for _, row in df.iterrows():
+        sqlQuery = f"""
+        UPDATE {table_name} SET status = %s, remark = %s WHERE asset = %s;
+        """
+  
+        data = ((row[0]), (row[1]), int(row[2]))
+
+
+        try:
+            # Execute the SQL command
+            cur.execute(sqlQuery, data)
+            # Commit your changes in the database
+            conn.commit()
+            # print("Data Inserted Successfully")
+        except Exception as e:
+            conn.rollback()
+            print("Error: ", e)
+
+    print("All Data Updated Successfully")
+    return
+
 def db_get_values(dbName: str="trainee"):
     conn, cur = DBConnect(dbName)
     sqlQuery = 'SELECT * FROM trainee;'
