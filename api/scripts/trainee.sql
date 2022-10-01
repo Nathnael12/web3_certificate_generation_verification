@@ -4,5 +4,6 @@ CREATE TABLE `trainee` (
 	`email` VARCHAR(50),
 	`asset` INT(10),
 	`status` VARCHAR(10),
+	`remark` VARCHAR(150),
 	PRIMARY KEY (`id`)
 );
