@@ -67,8 +67,6 @@ export const createAsset = async (hash, reserve = undefined) => {
 }
 
 export const upload = () => {
-
-
 }
 
 export const optin = async (assetID) => {
@@ -85,6 +83,36 @@ export const optin = async (assetID) => {
         to: sender,
         assetIndex:assetID,
         amount: 0
+    });
+    const signedTxn = await myAlgoConnect.signTransaction(txn.toByte());
+    console.log("txn", signedTxn);
+
+    const tx = (await algodClient.sendRawTransaction(signedTxn.blob).do());
+    // wait for transaction to be confirmed
+    await waitForConfirmation(algodClient, tx.txId);
+    // Get the new asset's information from the creator account
+    let ptx = await algodClient.pendingTransactionInformation(tx.txId).do();
+    console.log("ptx:",ptx);
+
+    
+}
+
+export const transfer = async (assetID,receiver) => {
+
+    console.log(assetID);
+    const params = await algodClient.getTransactionParams().do();
+    
+    const txn = algosdk.makeAssetTransferTxnWithSuggestedParams({
+        sender, 
+        receiver, 
+        undefined, 
+        undefined,
+        ammount:1, 
+        undefined, 
+        assetID, 
+        suggestedParams: {
+            ...params,
+        }
     });
     const signedTxn = await myAlgoConnect.signTransaction(txn.toByte());
     console.log("txn", signedTxn);
