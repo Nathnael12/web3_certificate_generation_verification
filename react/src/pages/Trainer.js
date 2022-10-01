@@ -1,7 +1,7 @@
 /*global reach*/
 import React, { useEffect, useState } from 'react'
 import MyAlgoConnect from '@randlabs/myalgo-connect';
-import { createAsset, upload } from '../utils/asset'
+import { createAsset, transfer } from '../utils/asset'
 import { Link } from 'react-router-dom';
 const axios = require('axios')
 const algosdk = require('algosdk');
@@ -52,6 +52,44 @@ const mint = async (e,id="") => {
 
 }
 
+const asset_transfer = async (e,assetID)=>{
+    e.preventDefault()
+
+    let response = await axios.get(`127.0.0.1:8000/getTrainee?asset=${assetID}`) 
+    let receiver = response.data[0][0]
+    let email = response.data[0][1]
+
+    await transfer(assetID,receiver)
+
+    let updateData = {
+        asset:assetID,
+        status:"Transfered",
+        email:email
+    }
+
+    await axios.post(`http://127.0.0.1:8000/update`,updateData)
+
+    window.location.reload()
+
+}
+
+const decline = async (e,assetID)=>{
+
+    e.preventDefault()
+    let response = await axios.get(`127.0.0.1:8000/getTrainee?asset=${assetID}`) 
+    let email = response.data[0][1]
+
+    let updateData = {
+        asset:assetID,
+        status:"Created",
+        email:email
+    }
+
+    await axios.post(`http://127.0.0.1:8000/update`,updateData)
+    window.location.reload()
+
+
+}
 
 const Trainer = () => {
 
@@ -69,6 +107,7 @@ const Trainer = () => {
         localStorage.clear()
         window.location = "/"
     }
+    
     const showTrainees = () => {
         const users = [...trainees].map((e, i) => {
             return <div className="" key={i}>
@@ -89,8 +128,8 @@ const Trainer = () => {
                                 </div> :
                                 e[4] == "Requested" ?
                                     <div className="status">
-                                        <p className="btn btn-sm btn-success">Approve</p>
-                                        <p className="btn btn-sm btn-danger">Decline</p>
+                                        <p onClick={(ev)=>transfer(ev,e[3])} className="btn btn-sm btn-success">Approve</p>
+                                        <p onClick={(ev)=>decline(ev,e[3])} className="btn btn-sm btn-danger">Decline</p>
                                     </div> : <div></div>
                     }
                 </div>
@@ -99,6 +138,7 @@ const Trainer = () => {
         })
         return users
     }
+    
     return (
         <div>
 
