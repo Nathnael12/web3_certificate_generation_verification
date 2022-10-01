@@ -47,7 +47,7 @@ const Home = () => {
                     <div className="col-md-6 p-0">
                         <div className="gym-className-box d-flex flex-column align-items-end justify-content-center bg-primary text-right text-white py-5 px-5">
                             <h3 className="display-4 mb-3 text-white font-weight-bold">Trainee</h3>
-                            <p>
+                            <p className='text-right'>
                                 Lorem justo tempor sit aliquyam invidunt, amet vero ea dolor ipsum ut diam sit dolores, dolor
                                 sit eos sea sanctus erat lorem nonumy sanctus takimata. Kasd amet sit sadipscing at..
                             </p>
@@ -58,11 +58,11 @@ const Home = () => {
                     <div className="col-md-6 p-0">
                         <div className="gym-className-box d-flex flex-column align-items-start justify-content-center bg-secondary text-left text-white py-5 px-5">
                             <h3 className="display-4 mb-3 text-white font-weight-bold">Trainer</h3>
-                            <p>
+                            <p className='text-left'>
                                 Lorem justo tempor sit aliquyam invidunt, amet vero ea dolor ipsum ut diam sit dolores, dolor
                                 sit eos sea sanctus erat lorem nonumy sanctus takimata. Kasd amet sit sadipscing at..
                             </p>
-                            <LoginBtn className="btn btn-lg btn-outline-light mt-4 px-4" to={"trainee"} />
+                            <LoginBtn className="btn btn-lg btn-outline-light mt-4 px-4" to={"trainer"} />
                             {/* <Link to="" className="btn btn-lg btn-outline-light mt-4 px-4">Login</Link> */}
                         </div>
                     </div>
@@ -77,17 +77,17 @@ const Home = () => {
                     </div>
                     <div className="col-lg-6">
                         <h2 className="display-4 font-weight-bold mb-4">About Us</h2>
-                        <p>Labore vero lorem eos sed aliquy ipsum aliquy sed. Vero dolore dolore takima ipsum lorem rebum</p>
+                        <p className='text-left'>Labore vero lorem eos sed aliquy ipsum aliquy sed. Vero dolore dolore takima ipsum lorem rebum</p>
                         <div className="row py-2">
                             <div className="col-sm-6">
                                 <i className="flaticon-trends  display-2 text-primary"></i>
                                 <h4 className="font-weight-bold">Certified GYM Center</h4>
-                                <p>Ipsum sanctu dolor ipsum dolore sit et kasd duo</p>
+                                <p className='text-left'>Ipsum sanctu dolor ipsum dolore sit et kasd duo</p>
                             </div>
                             <div className="col-sm-6">
                                 <i className="flaticon-medal display-2 text-primary"></i>
                                 <h4 className="font-weight-bold">Award Winning</h4>
-                                <p>Ipsum sanctu dolor ipsum dolore sit et kasd duo</p>
+                                <p className='text-left'>Ipsum sanctu dolor ipsum dolore sit et kasd duo</p>
                             </div>
                         </div>
                         <Link to="https://www.10academy.org" target="_blank" className="btn btn-lg px-4 btn-outline-primary">Learn More</Link>
