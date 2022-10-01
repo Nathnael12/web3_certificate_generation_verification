@@ -87,8 +87,8 @@ def insert_to_table(dbName: str, json_stream: json, table_name: str) -> None:
     df=pd.read_json(insert_data)
     # print(df.head())
     for _, row in df.iterrows():
-        sqlQuery = f"""INSERT INTO {table_name} (trainee, email, asset, status) VALUES(%s,%s,%s,%s);"""
-        data = (row[0], row[1], row[2], row[3])
+        sqlQuery = f"""INSERT INTO {table_name} (trainee, email, asset, status,hashed) VALUES(%s,%s,%s,%s,%s);"""
+        data = (row[0], row[1], row[2], row[3],row[4])
         # data = (str(row[0]), str(row[1]), int(row[2]), str(row[3]))
         print(data)
 
@@ -112,11 +112,10 @@ def update_table(dbName: str, json_stream: json, table_name: str) -> None:
     df=pd.read_json(update_data)
     for _, row in df.iterrows():
         sqlQuery = f"""
-        UPDATE {table_name} SET asset = %s, status = %s WHERE email = %s;
+        UPDATE {table_name} SET asset = %s, status = %s, hashed= %s WHERE email = %s;
         """
   
-        data = (int(row[0]), str(row[1]), str(row[2]))
-
+        data = (int(row[0]), str(row[1]), str(row[3]),str(row[2]))
 
         try:
             # Execute the SQL command
@@ -171,7 +170,19 @@ def db_get_values(dbName: str="trainee"):
     
 def db_get_values_by_asset(asset:str,dbName: str="trainee"):
     conn, cur = DBConnect(dbName)
-    sqlQuery = f'SELECT remark,email FROM trainee WHERE asset = {asset};'
+    sqlQuery = f'SELECT remark,email,hashed FROM trainee WHERE asset = {asset};'
+    try:
+        cur.execute(sqlQuery)
+        result = cur.fetchall()
+        conn.commit()
+        return result
+    except Exception as e:
+        conn.rollback()
+        print("Error: ", e)
+
+def db_get_values_by_addr(addr:str,dbName: str="trainee"):
+    conn, cur = DBConnect(dbName)
+    sqlQuery = f'SELECT asset,status,hashed FROM trainee WHERE remark = {addr};'
     try:
         cur.execute(sqlQuery)
         result = cur.fetchall()

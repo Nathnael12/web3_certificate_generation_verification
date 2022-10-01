@@ -11,7 +11,7 @@ const mint = async (e,id="") => {
 
     e.preventDefault()
     let hash = await axios.post('http://127.0.0.1:8000/mint', {})
-    let assetID = await createAsset(hash)
+    let assetID = await createAsset(hash.data)
     // console.log(email);
     if (id=="") {
         let email = document.getElementById('email').value
@@ -20,7 +20,8 @@ const mint = async (e,id="") => {
             trainee: "-",
             email: email,
             asset: parseInt(assetID),
-            status: "Created"
+            status: "Created",
+            hashed:hash.data
         }
         let postData={
             db_name: "trainee",
@@ -39,8 +40,10 @@ const mint = async (e,id="") => {
         let updateData = {
             asset:assetID,
             status:"Created",
-            email:email
+            email:email,
+            hashed:hash.data
         }
+        console.log(hash.data)
 
         await axios.post(`http://127.0.0.1:8000/update`,updateData)
 
@@ -58,13 +61,15 @@ const asset_transfer = async (e,assetID)=>{
     let response = await axios.get(`http://127.0.0.1:8000/getTrainee?asset=${assetID}`) 
     let receiver = response.data[0][0]
     let email = response.data[0][1]
+    let hash = response.data[0][2]
 
     await transfer(assetID,receiver)
 
     let updateData = {
         asset:assetID,
         status:"Transfered",
-        email:email
+        email:email,
+        hashed:hash
     }
 
     await axios.post(`http://127.0.0.1:8000/update`,updateData)

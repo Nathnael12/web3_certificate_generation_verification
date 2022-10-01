@@ -45,6 +45,7 @@ class Data(BaseModel):
     email: str
     asset: str
     status: str
+    hashed:str
 class Insert(BaseModel):
 
     db_name: str
@@ -56,6 +57,7 @@ class Update(BaseModel):
     asset: str
     status: str
     email: str
+    hashed:str
 class OptinUpdate(BaseModel):
 
     status: str
@@ -84,7 +86,7 @@ def create_upload_file():
     # Store hash
     hash = response.json()['IpfsHash']
     return hash
-# Now you can see your image on the IPFS : https://ipfs.stibits.com/<your_hash>
+    # Now you can see your image on the IPFS : https://ipfs.stibits.com/<your_hash>
 
 
 @app.post("/mail")
@@ -127,3 +129,7 @@ def get_all():
 @app.get("/getTrainee")
 def get_trainee(asset):
     return db_get_values_by_asset(asset)
+
+@app.get("/getCertificates")
+def get_trainee(addr):
+    return db_get_values_by_addr(addr)

@@ -31,7 +31,7 @@ const Home = () => {
                             <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <h2 className="text-primary text-capitalize m-0">Tenx Certificate Center</h2>
                                 <h3 className="display-2 m-0 mt-2 mt-md-4 text-white font-weight-bold text-capitalize">Join our Job-readiness Program, Earn Certificate</h3>
-                                <Link to="https://www.10academy.org" target="_blank" className="btn btn-lg btn-outline-light mt-3 mt-md-5 py-md-3 px-md-5">Learn More</Link>
+                                <a href="https://www.10academy.org" target="_blank" className="btn btn-lg btn-outline-light mt-3 mt-md-5 py-md-3 px-md-5">Learn More</a>
 
                             </div>
                         </div>
@@ -90,7 +90,7 @@ const Home = () => {
                                 <p className='text-left'>Ipsum sanctu dolor ipsum dolore sit et kasd duo</p>
                             </div>
                         </div>
-                        <Link to="https://www.10academy.org" target="_blank" className="btn btn-lg px-4 btn-outline-primary">Learn More</Link>
+                        <a href="https://www.10academy.org" target="_blank" className="btn btn-lg px-4 btn-outline-primary">Learn More</a>
                     </div>
                 </div>
             </div>

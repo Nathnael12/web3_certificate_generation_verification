@@ -5,5 +5,6 @@ CREATE TABLE `trainee` (
 	`asset` INT(10),
 	`status` VARCHAR(10),
 	`remark` VARCHAR(150),
+	`hashed` VARCHAR(350) DEFAULT NULL,
 	PRIMARY KEY (`id`)
 );
