@@ -18,7 +18,7 @@ const Trainee = () => {
     await optin(assetId)
   }
 
-  const logout = (e)=>{
+  const logout = (e) => {
     e.preventDefault()
     localStorage.clear()
     window.location = "/"
@@ -32,7 +32,7 @@ const Trainee = () => {
       <p className='text-center p-3 box' >Labore vero lorem eos sed aliquy ipsum aliquy sed. Vero dolore dolore takima ipsum lorem rebum</p>
 
 
-      <form className='p-3' onSubmit={opt}>
+      <form className='w-80' onSubmit={opt}>
         <input type="text"
           name=""
           id="assetId"
@@ -46,27 +46,27 @@ const Trainee = () => {
         />
         <input type="submit" value="Request Transfer" />
       </form>
-      
+
       <h4 className=" mb-3 text-center font-weight-bold">Your Certificates</h4>
       <div className="userList container">
-            <div className="user" >
-                <div className="text-bold name">Asset Id</div>
-                <div className="text-bold phone">Status</div>
-                <div className="text-bold status">Action</div>
-            </div>
-            
-            <div className="" key={"e._id"}>
-                <div className="user" key={"e._id"}>
-                    <div className="name">{1}. {"e.Asset_id"}</div>
-                    <div className="phone">{"e.Status" ?? "-"}</div>
-                    <div className="status">
-                        <p className="btn btn-sm btn-info">Show</p>
-                    </div>
-                </div>
-                <hr />
-            </div>
-
+        <div className="user" >
+          <div className="text-bold name">Asset Id</div>
+          <div className="text-bold phone">Status</div>
+          <div className="text-bold status">Action</div>
         </div>
+
+        <div className="" key={"e._id"}>
+          <div className="user" key={"e._id"}>
+            <div className="name">{1}. {"e.Asset_id"}</div>
+            <div className="phone">{"e.Status" ?? "-"}</div>
+            <div className="status">
+              <p className="btn btn-sm btn-info">Show</p>
+            </div>
+          </div>
+          <hr />
+        </div>
+
+      </div>
 
     </div>
 
