@@ -1,6 +1,8 @@
 import sys
+import os
 # from api.scripts.sql_db import createDB, createTable, db_get_values_by_asset, insert_to_table, update_table
-sys.path.append(f'./scripts')
+sys.path.append(f'api/scripts')
+print(os.getcwd())
 from send_email import send
 from sql_db import *
 import json
