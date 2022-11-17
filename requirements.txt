@@ -1,0 +1,8 @@
+certifi==2022.9.24
+fastapi==0.87.0
+gunicorn==20.1.0
+mysql==0.0.3
+mysql-connector-python==8.0.31
+pandas==1.5.1
+pip-chill==1.0.1
+wincertstore==0.2
