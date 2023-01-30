@@ -59,12 +59,15 @@ ____
 ## Installation
 Before installing this app, you need to prepare a few things
 - install node.js
+- install mysql server
+- use the `trainee.sql` file inside `api/scripts` to create the schema
 - prepare a `config.py` file in the api folder
+- install the required python packages based on the requirement file
 
 your config file should look like this
 
 ```bash
-# create pinata api account and input the following
+# create pinata api account and enter the following
 API_KEY = "your api key"
 API_SECRET ="your api secret key"
 # generate app email password from your gmail
@@ -86,6 +89,9 @@ uvicorn app:app --reload
 cd ../react
 npm run start
 
+```
+Or you may run the prepared bash file to start all services at once
 
-
+```bash
+./run.sh
 ```
